@@ -17,11 +17,18 @@ export type UserDocument = User & Document;
     @Prop({ required: true })
     password: string;
 
+    @Prop()
+  codeReset?: string;
+
+  @Prop()
+  codeResetExpire?: number;
+
     @Prop({ default: Date.now })
     createdAt: Date;
 
     @Prop({ default: Date.now })
     updatedAt: Date;
+
 
   
 }   
