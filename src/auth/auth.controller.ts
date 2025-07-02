@@ -8,13 +8,16 @@ export class AuthController {
 
   // Route pour inscription
   @Post('inscription')
-  async inscription(@Body() createAuthDto: CreateAuthDto): Promise<string> {
+  async inscription(
+    @Body() createAuthDto: CreateAuthDto
+  ): Promise<{ message: string }> {
     return this.authService.inscription(createAuthDto);
   }
 
   // Route pour connexion
   @Post('connexion')
-  async connexion(@Body() createAuthDto: CreateAuthDto): Promise<string> {
-    return this.authService.connexion(createAuthDto);
-  }
+async connexion(@Body() createAuthDto: CreateAuthDto): Promise<{ token: string }> {
+  return this.authService.connexion(createAuthDto);
+}
+
 }
