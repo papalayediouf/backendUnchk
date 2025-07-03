@@ -20,6 +20,13 @@ export class User {
   @Prop({ default: 'user', enum: ['user', 'admin'] })
   role: string; // ← champ ajouté ici
 
+   @Prop()
+  codeReset?: string;
+
+  @Prop()
+  codeResetExpire?: number;
+
+
   @Prop({ default: Date.now })
   createdAt: Date;
 
