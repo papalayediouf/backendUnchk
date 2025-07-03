@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,6 +11,13 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
+
+   // 🔐 Activation de la validation des DTOs(Mais actuelment il est false parceque le createDTO n'as pas de validator)
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: false, // Enlève les champs inconnus
+    forbidNonWhitelisted: false, // Erreur si champ non autorisé
+    transform: false, // Convertit les types automatiquement
+  }));
 
   await app.listen(process.env.PORT ?? 3000);
 }
